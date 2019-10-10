@@ -369,7 +369,7 @@ func (m *FileDescriptorSet) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FileDescriptorSet.Merge(m, src)
 }
 func (m *FileDescriptorSet) XXX_Size() int {
-	return xxx_messageInfo_FileDescriptorSet.Size(m)
+	return xxx_messageInfo_FileDescriptorSet.ProtoSize(m)
 }
 func (m *FileDescriptorSet) XXX_DiscardUnknown() {
 	xxx_messageInfo_FileDescriptorSet.DiscardUnknown(m)
@@ -430,7 +430,7 @@ func (m *FileDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FileDescriptorProto.Merge(m, src)
 }
 func (m *FileDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_FileDescriptorProto.Size(m)
+	return xxx_messageInfo_FileDescriptorProto.ProtoSize(m)
 }
 func (m *FileDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_FileDescriptorProto.DiscardUnknown(m)
@@ -557,7 +557,7 @@ func (m *DescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DescriptorProto.Merge(m, src)
 }
 func (m *DescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_DescriptorProto.Size(m)
+	return xxx_messageInfo_DescriptorProto.ProtoSize(m)
 }
 func (m *DescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_DescriptorProto.DiscardUnknown(m)
@@ -660,7 +660,7 @@ func (m *DescriptorProto_ExtensionRange) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DescriptorProto_ExtensionRange.Merge(m, src)
 }
 func (m *DescriptorProto_ExtensionRange) XXX_Size() int {
-	return xxx_messageInfo_DescriptorProto_ExtensionRange.Size(m)
+	return xxx_messageInfo_DescriptorProto_ExtensionRange.ProtoSize(m)
 }
 func (m *DescriptorProto_ExtensionRange) XXX_DiscardUnknown() {
 	xxx_messageInfo_DescriptorProto_ExtensionRange.DiscardUnknown(m)
@@ -716,7 +716,7 @@ func (m *DescriptorProto_ReservedRange) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DescriptorProto_ReservedRange.Merge(m, src)
 }
 func (m *DescriptorProto_ReservedRange) XXX_Size() int {
-	return xxx_messageInfo_DescriptorProto_ReservedRange.Size(m)
+	return xxx_messageInfo_DescriptorProto_ReservedRange.ProtoSize(m)
 }
 func (m *DescriptorProto_ReservedRange) XXX_DiscardUnknown() {
 	xxx_messageInfo_DescriptorProto_ReservedRange.DiscardUnknown(m)
@@ -772,7 +772,7 @@ func (m *ExtensionRangeOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ExtensionRangeOptions.Merge(m, src)
 }
 func (m *ExtensionRangeOptions) XXX_Size() int {
-	return xxx_messageInfo_ExtensionRangeOptions.Size(m)
+	return xxx_messageInfo_ExtensionRangeOptions.ProtoSize(m)
 }
 func (m *ExtensionRangeOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_ExtensionRangeOptions.DiscardUnknown(m)
@@ -840,7 +840,7 @@ func (m *FieldDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FieldDescriptorProto.Merge(m, src)
 }
 func (m *FieldDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_FieldDescriptorProto.Size(m)
+	return xxx_messageInfo_FieldDescriptorProto.ProtoSize(m)
 }
 func (m *FieldDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_FieldDescriptorProto.DiscardUnknown(m)
@@ -943,7 +943,7 @@ func (m *OneofDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_OneofDescriptorProto.Merge(m, src)
 }
 func (m *OneofDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_OneofDescriptorProto.Size(m)
+	return xxx_messageInfo_OneofDescriptorProto.ProtoSize(m)
 }
 func (m *OneofDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_OneofDescriptorProto.DiscardUnknown(m)
@@ -998,7 +998,7 @@ func (m *EnumDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_EnumDescriptorProto.Merge(m, src)
 }
 func (m *EnumDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_EnumDescriptorProto.Size(m)
+	return xxx_messageInfo_EnumDescriptorProto.ProtoSize(m)
 }
 func (m *EnumDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_EnumDescriptorProto.DiscardUnknown(m)
@@ -1071,7 +1071,7 @@ func (m *EnumDescriptorProto_EnumReservedRange) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_EnumDescriptorProto_EnumReservedRange.Merge(m, src)
 }
 func (m *EnumDescriptorProto_EnumReservedRange) XXX_Size() int {
-	return xxx_messageInfo_EnumDescriptorProto_EnumReservedRange.Size(m)
+	return xxx_messageInfo_EnumDescriptorProto_EnumReservedRange.ProtoSize(m)
 }
 func (m *EnumDescriptorProto_EnumReservedRange) XXX_DiscardUnknown() {
 	xxx_messageInfo_EnumDescriptorProto_EnumReservedRange.DiscardUnknown(m)
@@ -1119,7 +1119,7 @@ func (m *EnumValueDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_EnumValueDescriptorProto.Merge(m, src)
 }
 func (m *EnumValueDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_EnumValueDescriptorProto.Size(m)
+	return xxx_messageInfo_EnumValueDescriptorProto.ProtoSize(m)
 }
 func (m *EnumValueDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_EnumValueDescriptorProto.DiscardUnknown(m)
@@ -1174,7 +1174,7 @@ func (m *ServiceDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ServiceDescriptorProto.Merge(m, src)
 }
 func (m *ServiceDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_ServiceDescriptorProto.Size(m)
+	return xxx_messageInfo_ServiceDescriptorProto.ProtoSize(m)
 }
 func (m *ServiceDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_ServiceDescriptorProto.DiscardUnknown(m)
@@ -1236,7 +1236,7 @@ func (m *MethodDescriptorProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MethodDescriptorProto.Merge(m, src)
 }
 func (m *MethodDescriptorProto) XXX_Size() int {
-	return xxx_messageInfo_MethodDescriptorProto.Size(m)
+	return xxx_messageInfo_MethodDescriptorProto.ProtoSize(m)
 }
 func (m *MethodDescriptorProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_MethodDescriptorProto.DiscardUnknown(m)
@@ -1405,7 +1405,7 @@ func (m *FileOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FileOptions.Merge(m, src)
 }
 func (m *FileOptions) XXX_Size() int {
-	return xxx_messageInfo_FileOptions.Size(m)
+	return xxx_messageInfo_FileOptions.ProtoSize(m)
 }
 func (m *FileOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_FileOptions.DiscardUnknown(m)
@@ -1655,7 +1655,7 @@ func (m *MessageOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MessageOptions.Merge(m, src)
 }
 func (m *MessageOptions) XXX_Size() int {
-	return xxx_messageInfo_MessageOptions.Size(m)
+	return xxx_messageInfo_MessageOptions.ProtoSize(m)
 }
 func (m *MessageOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_MessageOptions.DiscardUnknown(m)
@@ -1795,7 +1795,7 @@ func (m *FieldOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FieldOptions.Merge(m, src)
 }
 func (m *FieldOptions) XXX_Size() int {
-	return xxx_messageInfo_FieldOptions.Size(m)
+	return xxx_messageInfo_FieldOptions.ProtoSize(m)
 }
 func (m *FieldOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_FieldOptions.DiscardUnknown(m)
@@ -1892,7 +1892,7 @@ func (m *OneofOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_OneofOptions.Merge(m, src)
 }
 func (m *OneofOptions) XXX_Size() int {
-	return xxx_messageInfo_OneofOptions.Size(m)
+	return xxx_messageInfo_OneofOptions.ProtoSize(m)
 }
 func (m *OneofOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_OneofOptions.DiscardUnknown(m)
@@ -1949,7 +1949,7 @@ func (m *EnumOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_EnumOptions.Merge(m, src)
 }
 func (m *EnumOptions) XXX_Size() int {
-	return xxx_messageInfo_EnumOptions.Size(m)
+	return xxx_messageInfo_EnumOptions.ProtoSize(m)
 }
 func (m *EnumOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_EnumOptions.DiscardUnknown(m)
@@ -2019,7 +2019,7 @@ func (m *EnumValueOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_EnumValueOptions.Merge(m, src)
 }
 func (m *EnumValueOptions) XXX_Size() int {
-	return xxx_messageInfo_EnumValueOptions.Size(m)
+	return xxx_messageInfo_EnumValueOptions.ProtoSize(m)
 }
 func (m *EnumValueOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_EnumValueOptions.DiscardUnknown(m)
@@ -2082,7 +2082,7 @@ func (m *ServiceOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ServiceOptions.Merge(m, src)
 }
 func (m *ServiceOptions) XXX_Size() int {
-	return xxx_messageInfo_ServiceOptions.Size(m)
+	return xxx_messageInfo_ServiceOptions.ProtoSize(m)
 }
 func (m *ServiceOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_ServiceOptions.DiscardUnknown(m)
@@ -2146,7 +2146,7 @@ func (m *MethodOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MethodOptions.Merge(m, src)
 }
 func (m *MethodOptions) XXX_Size() int {
-	return xxx_messageInfo_MethodOptions.Size(m)
+	return xxx_messageInfo_MethodOptions.ProtoSize(m)
 }
 func (m *MethodOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_MethodOptions.DiscardUnknown(m)
@@ -2215,7 +2215,7 @@ func (m *UninterpretedOption) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UninterpretedOption.Merge(m, src)
 }
 func (m *UninterpretedOption) XXX_Size() int {
-	return xxx_messageInfo_UninterpretedOption.Size(m)
+	return xxx_messageInfo_UninterpretedOption.ProtoSize(m)
 }
 func (m *UninterpretedOption) XXX_DiscardUnknown() {
 	xxx_messageInfo_UninterpretedOption.DiscardUnknown(m)
@@ -2301,7 +2301,7 @@ func (m *UninterpretedOption_NamePart) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UninterpretedOption_NamePart.Merge(m, src)
 }
 func (m *UninterpretedOption_NamePart) XXX_Size() int {
-	return xxx_messageInfo_UninterpretedOption_NamePart.Size(m)
+	return xxx_messageInfo_UninterpretedOption_NamePart.ProtoSize(m)
 }
 func (m *UninterpretedOption_NamePart) XXX_DiscardUnknown() {
 	xxx_messageInfo_UninterpretedOption_NamePart.DiscardUnknown(m)
@@ -2391,7 +2391,7 @@ func (m *SourceCodeInfo) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_SourceCodeInfo.Merge(m, src)
 }
 func (m *SourceCodeInfo) XXX_Size() int {
-	return xxx_messageInfo_SourceCodeInfo.Size(m)
+	return xxx_messageInfo_SourceCodeInfo.ProtoSize(m)
 }
 func (m *SourceCodeInfo) XXX_DiscardUnknown() {
 	xxx_messageInfo_SourceCodeInfo.DiscardUnknown(m)
@@ -2508,7 +2508,7 @@ func (m *SourceCodeInfo_Location) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_SourceCodeInfo_Location.Merge(m, src)
 }
 func (m *SourceCodeInfo_Location) XXX_Size() int {
-	return xxx_messageInfo_SourceCodeInfo_Location.Size(m)
+	return xxx_messageInfo_SourceCodeInfo_Location.ProtoSize(m)
 }
 func (m *SourceCodeInfo_Location) XXX_DiscardUnknown() {
 	xxx_messageInfo_SourceCodeInfo_Location.DiscardUnknown(m)
@@ -2579,7 +2579,7 @@ func (m *GeneratedCodeInfo) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GeneratedCodeInfo.Merge(m, src)
 }
 func (m *GeneratedCodeInfo) XXX_Size() int {
-	return xxx_messageInfo_GeneratedCodeInfo.Size(m)
+	return xxx_messageInfo_GeneratedCodeInfo.ProtoSize(m)
 }
 func (m *GeneratedCodeInfo) XXX_DiscardUnknown() {
 	xxx_messageInfo_GeneratedCodeInfo.DiscardUnknown(m)
@@ -2628,7 +2628,7 @@ func (m *GeneratedCodeInfo_Annotation) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GeneratedCodeInfo_Annotation.Merge(m, src)
 }
 func (m *GeneratedCodeInfo_Annotation) XXX_Size() int {
-	return xxx_messageInfo_GeneratedCodeInfo_Annotation.Size(m)
+	return xxx_messageInfo_GeneratedCodeInfo_Annotation.ProtoSize(m)
 }
 func (m *GeneratedCodeInfo_Annotation) XXX_DiscardUnknown() {
 	xxx_messageInfo_GeneratedCodeInfo_Annotation.DiscardUnknown(m)
