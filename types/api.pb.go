@@ -7,8 +7,11 @@ import (
 	fmt "fmt"
 	proto "github.com/gogo/protobuf/proto"
 	golang_proto "github.com/golang/protobuf/proto"
+	ptype "google.golang.org/genproto/protobuf/ptype"
+	source_context "google.golang.org/genproto/protobuf/source_context"
 	io "io"
 	math "math"
+	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 )
@@ -23,7 +26,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.GoGoProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // Api is a light-weight descriptor for an API Interface.
 //
@@ -41,7 +44,7 @@ type Api struct {
 	// The methods of this interface, in unspecified order.
 	Methods []*Method `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`
 	// Any metadata attached to the interface.
-	Options []*Option `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
+	Options []*ptype.Option `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
 	// A version string for this interface. If specified, must have the form
 	// `major-version.minor-version`, as in `1.10`. If the minor version is
 	// omitted, it defaults to zero. If the entire version field is empty, the
@@ -66,11 +69,11 @@ type Api struct {
 	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
 	// Source context for the protocol buffer service represented by this
 	// message.
-	SourceContext *SourceContext `protobuf:"bytes,5,opt,name=source_context,json=sourceContext,proto3" json:"source_context,omitempty"`
+	SourceContext *source_context.SourceContext `protobuf:"bytes,5,opt,name=source_context,json=sourceContext,proto3" json:"source_context,omitempty"`
 	// Included interfaces. See [Mixin][].
 	Mixins []*Mixin `protobuf:"bytes,6,rep,name=mixins,proto3" json:"mixins,omitempty"`
 	// The source syntax of the service.
-	Syntax Syntax `protobuf:"varint,7,opt,name=syntax,proto3,enum=google.protobuf.Syntax" json:"syntax,omitempty"`
+	Syntax ptype.Syntax `protobuf:"varint,7,opt,name=syntax,proto3,enum=google.protobuf.Syntax" json:"syntax,omitempty"`
 }
 
 func (m *Api) Reset()      { *m = Api{} }
@@ -83,7 +86,7 @@ func (m *Api) XXX_Unmarshal(b []byte) error {
 }
 func (m *Api) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -118,9 +121,9 @@ type Method struct {
 	// If true, the response is streamed.
 	ResponseStreaming bool `protobuf:"varint,5,opt,name=response_streaming,json=responseStreaming,proto3" json:"response_streaming,omitempty"`
 	// Any metadata attached to the method.
-	Options []*Option `protobuf:"bytes,6,rep,name=options,proto3" json:"options,omitempty"`
+	Options []*ptype.Option `protobuf:"bytes,6,rep,name=options,proto3" json:"options,omitempty"`
 	// The source syntax of this method.
-	Syntax Syntax `protobuf:"varint,7,opt,name=syntax,proto3,enum=google.protobuf.Syntax" json:"syntax,omitempty"`
+	Syntax ptype.Syntax `protobuf:"varint,7,opt,name=syntax,proto3,enum=google.protobuf.Syntax" json:"syntax,omitempty"`
 }
 
 func (m *Method) Reset()      { *m = Method{} }
@@ -133,7 +136,7 @@ func (m *Method) XXX_Unmarshal(b []byte) error {
 }
 func (m *Method) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -251,7 +254,7 @@ func (m *Mixin) XXX_Unmarshal(b []byte) error {
 }
 func (m *Mixin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -285,43 +288,44 @@ func init() { proto.RegisterFile("google/protobuf/api.proto", fileDescriptor_a2e
 func init() { golang_proto.RegisterFile("google/protobuf/api.proto", fileDescriptor_a2ec32096296c143) }
 
 var fileDescriptor_a2ec32096296c143 = []byte{
-	// 468 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x91, 0xc1, 0x6e, 0xd3, 0x30,
-	0x18, 0xc7, 0xe3, 0xa4, 0x4d, 0x87, 0x27, 0x3a, 0x30, 0x12, 0x98, 0x1e, 0xac, 0x68, 0xe2, 0x10,
-	0x81, 0x48, 0xc5, 0x78, 0x82, 0x15, 0xa1, 0x1d, 0x10, 0xa2, 0x4a, 0x41, 0x48, 0x5c, 0xaa, 0xae,
-	0x98, 0x62, 0x29, 0xb1, 0x8d, 0xed, 0x42, 0x7b, 0x82, 0x47, 0xe0, 0x11, 0x10, 0x47, 0x8e, 0x3c,
-	0x01, 0xdc, 0x7a, 0xdc, 0xb1, 0xd7, 0x35, 0x2f, 0x82, 0xe2, 0xc4, 0xeb, 0x68, 0x8b, 0xc4, 0x6e,
-	0xfe, 0xfc, 0xff, 0xf9, 0xef, 0xef, 0xfb, 0x7f, 0xf0, 0xee, 0x44, 0x88, 0x49, 0x46, 0xbb, 0x52,
-	0x09, 0x23, 0x4e, 0xa7, 0xef, 0xba, 0x23, 0xc9, 0x12, 0x5b, 0xa0, 0x83, 0x4a, 0x4a, 0x9c, 0xd4,
-	0xb9, 0xb7, 0xc9, 0x6a, 0x31, 0x55, 0x63, 0x3a, 0x1c, 0x0b, 0x6e, 0xe8, 0xcc, 0x54, 0x60, 0xa7,
-	0xb3, 0x49, 0x99, 0xb9, 0xac, 0x4d, 0x0e, 0x7f, 0xfb, 0x30, 0x38, 0x96, 0x0c, 0x21, 0xd8, 0xe0,
-	0xa3, 0x9c, 0x62, 0x10, 0x81, 0xf8, 0x5a, 0x6a, 0xcf, 0xe8, 0x11, 0x6c, 0xe5, 0xd4, 0xbc, 0x17,
-	0x6f, 0x35, 0xf6, 0xa3, 0x20, 0xde, 0x3f, 0xba, 0x93, 0x6c, 0x34, 0x90, 0x3c, 0xb7, 0x7a, 0xea,
-	0xb8, 0xf2, 0x89, 0x90, 0x86, 0x09, 0xae, 0x71, 0xf0, 0x8f, 0x27, 0x2f, 0xac, 0x9e, 0x3a, 0x0e,
-	0x61, 0xd8, 0xfa, 0x48, 0x95, 0x66, 0x82, 0xe3, 0x86, 0xfd, 0xdc, 0x95, 0xe8, 0x29, 0x6c, 0xff,
-	0x3d, 0x0f, 0x6e, 0x46, 0x20, 0xde, 0x3f, 0x22, 0x5b, 0x9e, 0x03, 0x8b, 0x3d, 0xa9, 0xa8, 0xf4,
-	0xba, 0xbe, 0x5c, 0xa2, 0x04, 0x86, 0x39, 0x9b, 0x31, 0xae, 0x71, 0x68, 0x5b, 0xba, 0xbd, 0x3d,
-	0x45, 0x29, 0xa7, 0x35, 0x85, 0xba, 0x30, 0xd4, 0x73, 0x6e, 0x46, 0x33, 0xdc, 0x8a, 0x40, 0xdc,
-	0xde, 0x31, 0xc2, 0xc0, 0xca, 0x69, 0x8d, 0x1d, 0xfe, 0xf4, 0x61, 0x58, 0x05, 0xb1, 0x33, 0xc6,
-	0x18, 0xde, 0x50, 0xf4, 0xc3, 0x94, 0x6a, 0x33, 0x2c, 0x83, 0x1f, 0x4e, 0x55, 0x86, 0x7d, 0xab,
-	0xb7, 0xeb, 0xfb, 0x97, 0x73, 0x49, 0x5f, 0xa9, 0x0c, 0x3d, 0x80, 0x37, 0x1d, 0xa9, 0x8d, 0xa2,
-	0xa3, 0x9c, 0xf1, 0x09, 0x0e, 0x22, 0x10, 0xef, 0xa5, 0xce, 0x62, 0xe0, 0xee, 0xd1, 0xfd, 0x12,
-	0xd6, 0x52, 0x70, 0x4d, 0xd7, 0xbe, 0x55, 0x82, 0x07, 0x4e, 0x70, 0xc6, 0x0f, 0x21, 0xba, 0x60,
-	0xd7, 0xce, 0x4d, 0xeb, 0x7c, 0xe1, 0xb2, 0xb6, 0xbe, 0xb4, 0xc5, 0xf0, 0x3f, 0xb7, 0x78, 0xe5,
-	0xd0, 0xba, 0xb0, 0x69, 0x63, 0xdf, 0x19, 0x19, 0x82, 0x0d, 0x25, 0x84, 0xa9, 0x63, 0xb2, 0xe7,
-	0xde, 0xe7, 0xc5, 0x39, 0xf1, 0x96, 0xe7, 0xc4, 0xfb, 0xb2, 0x22, 0x60, 0xb1, 0x22, 0xe0, 0x6c,
-	0x45, 0xc0, 0x72, 0x45, 0xc0, 0xd7, 0x82, 0x78, 0xdf, 0x0a, 0x02, 0x7e, 0x15, 0x04, 0x2c, 0x0a,
-	0x02, 0xce, 0x0a, 0xe2, 0x2d, 0x0b, 0xe2, 0xc1, 0x5b, 0x63, 0x91, 0x6f, 0xb6, 0xd1, 0xdb, 0x3b,
-	0x96, 0xac, 0x5f, 0x16, 0x7d, 0xf0, 0xa6, 0x59, 0xe6, 0xa6, 0xbf, 0xfb, 0xc1, 0x49, 0xbf, 0xf7,
-	0xc3, 0x27, 0x27, 0x15, 0xda, 0x77, 0x1d, 0xbf, 0xa6, 0x59, 0xf6, 0x8c, 0x8b, 0x4f, 0xbc, 0x8c,
-	0x51, 0x9f, 0x86, 0xd6, 0xe3, 0xf1, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0e, 0x1f, 0xf9, 0x5e,
-	0xa1, 0x03, 0x00, 0x00,
+	// 487 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xc1, 0x6e, 0xd3, 0x30,
+	0x18, 0xc7, 0xeb, 0xa4, 0x4d, 0x87, 0x27, 0x3a, 0x30, 0x12, 0x98, 0x1e, 0xac, 0x68, 0xe2, 0x10,
+	0x31, 0x91, 0x88, 0x71, 0xe4, 0xb4, 0x22, 0xb4, 0x03, 0x42, 0x54, 0x29, 0x08, 0x89, 0x4b, 0x95,
+	0x15, 0x13, 0x22, 0x25, 0xb6, 0xb1, 0x5d, 0x68, 0x6f, 0x3c, 0x02, 0x8f, 0x80, 0x90, 0xb8, 0x70,
+	0xe4, 0x09, 0xe0, 0xd6, 0xe3, 0x8e, 0xbd, 0xae, 0x79, 0x11, 0x14, 0x27, 0x5e, 0xb7, 0xae, 0x48,
+	0x70, 0xf3, 0xe7, 0xff, 0xef, 0xfb, 0xe7, 0xfb, 0xfe, 0x56, 0xe0, 0xdd, 0x94, 0xf3, 0x34, 0xa7,
+	0x91, 0x90, 0x5c, 0xf3, 0x93, 0xe9, 0xbb, 0x28, 0x11, 0x59, 0x68, 0x0a, 0xb4, 0x57, 0x4b, 0xa1,
+	0x95, 0xfa, 0xf7, 0x36, 0x59, 0xc5, 0xa7, 0x72, 0x42, 0xc7, 0x13, 0xce, 0x34, 0x9d, 0xe9, 0x1a,
+	0xec, 0xf7, 0x37, 0x29, 0x3d, 0x17, 0x8d, 0xc9, 0xfe, 0x6f, 0x07, 0xba, 0x47, 0x22, 0x43, 0x08,
+	0xb6, 0x59, 0x52, 0x50, 0x0c, 0x7c, 0x10, 0x5c, 0x8b, 0xcd, 0x19, 0x3d, 0x84, 0xdd, 0x82, 0xea,
+	0xf7, 0xfc, 0xad, 0xc2, 0x8e, 0xef, 0x06, 0xbb, 0x87, 0x77, 0xc2, 0x8d, 0x01, 0xc2, 0xe7, 0x46,
+	0x8f, 0x2d, 0x57, 0xb5, 0x70, 0xa1, 0x33, 0xce, 0x14, 0x76, 0xff, 0xd2, 0xf2, 0xc2, 0xe8, 0xb1,
+	0xe5, 0x10, 0x86, 0xdd, 0x8f, 0x54, 0xaa, 0x8c, 0x33, 0xdc, 0x36, 0x1f, 0xb7, 0x25, 0x7a, 0x0a,
+	0x7b, 0x97, 0xf7, 0xc1, 0x1d, 0x1f, 0x04, 0xbb, 0x87, 0xe4, 0x8a, 0xe7, 0xc8, 0x60, 0x4f, 0x6a,
+	0x2a, 0xbe, 0xae, 0x2e, 0x96, 0x28, 0x84, 0x5e, 0x91, 0xcd, 0x32, 0xa6, 0xb0, 0x67, 0x46, 0xba,
+	0x7d, 0x75, 0x8b, 0x4a, 0x8e, 0x1b, 0x0a, 0x45, 0xd0, 0x53, 0x73, 0xa6, 0x93, 0x19, 0xee, 0xfa,
+	0x20, 0xe8, 0x6d, 0x59, 0x61, 0x64, 0xe4, 0xb8, 0xc1, 0xf6, 0x7f, 0x3a, 0xd0, 0xab, 0x83, 0xd8,
+	0x1a, 0x63, 0x00, 0x6f, 0x48, 0xfa, 0x61, 0x4a, 0x95, 0x1e, 0x57, 0xc1, 0x8f, 0xa7, 0x32, 0xc7,
+	0x8e, 0xd1, 0x7b, 0xcd, 0xfd, 0xcb, 0xb9, 0xa0, 0xaf, 0x64, 0x8e, 0x0e, 0xe0, 0x4d, 0x4b, 0x2a,
+	0x2d, 0x69, 0x52, 0x64, 0x2c, 0xc5, 0xae, 0x0f, 0x82, 0x9d, 0xd8, 0x5a, 0x8c, 0xec, 0x3d, 0xba,
+	0x5f, 0xc1, 0x4a, 0x70, 0xa6, 0xe8, 0xda, 0xb7, 0x4e, 0x70, 0xcf, 0x0a, 0xd6, 0xf8, 0x01, 0x44,
+	0xe7, 0xec, 0xda, 0xb9, 0x63, 0x9c, 0xcf, 0x5d, 0xd6, 0xd6, 0x17, 0x5e, 0xd1, 0xfb, 0xc7, 0x57,
+	0xfc, 0xef, 0xd0, 0x22, 0xd8, 0x31, 0xb1, 0x6f, 0x8d, 0x0c, 0xc1, 0xb6, 0xe4, 0x5c, 0x37, 0x31,
+	0x99, 0xf3, 0xe0, 0x3b, 0x58, 0x9c, 0x91, 0xd6, 0xf2, 0x8c, 0xb4, 0x3e, 0xaf, 0x08, 0x58, 0xac,
+	0x08, 0x38, 0x5d, 0x11, 0xb0, 0x5c, 0x11, 0xf0, 0xa5, 0x24, 0xad, 0xaf, 0x25, 0x01, 0xbf, 0x4a,
+	0x02, 0x16, 0x25, 0x01, 0xa7, 0x25, 0x69, 0x2d, 0x4b, 0xd2, 0x82, 0xb7, 0x26, 0xbc, 0xd8, 0x9c,
+	0x63, 0xb0, 0x73, 0x24, 0xb2, 0x61, 0x55, 0x0c, 0xc1, 0x9b, 0x83, 0x46, 0x4c, 0x79, 0x9e, 0xb0,
+	0x34, 0xe4, 0x32, 0x8d, 0x52, 0xca, 0x0c, 0x7a, 0xe9, 0xff, 0x7b, 0x9c, 0x88, 0xec, 0x9b, 0xe3,
+	0x1e, 0x0f, 0x07, 0x3f, 0x1c, 0x72, 0x5c, 0xf7, 0x0c, 0xed, 0x62, 0xaf, 0x69, 0x9e, 0x3f, 0x63,
+	0xfc, 0x13, 0xab, 0xd2, 0x56, 0x27, 0x9e, 0x69, 0x7c, 0xf4, 0x27, 0x00, 0x00, 0xff, 0xff, 0xf7,
+	0xfe, 0x26, 0x7c, 0xc8, 0x03, 0x00, 0x00,
 }
 
 func (m *Api) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -329,80 +333,95 @@ func (m *Api) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Api) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Api) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Name) > 0 {
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
-		i += copy(dAtA[i:], m.Name)
-	}
-	if len(m.Methods) > 0 {
-		for _, msg := range m.Methods {
-			dAtA[i] = 0x12
-			i++
-			i = encodeVarintApi(dAtA, i, uint64(msg.ProtoSize()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if len(m.Options) > 0 {
-		for _, msg := range m.Options {
-			dAtA[i] = 0x1a
-			i++
-			i = encodeVarintApi(dAtA, i, uint64(msg.ProtoSize()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if len(m.Version) > 0 {
-		dAtA[i] = 0x22
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Version)))
-		i += copy(dAtA[i:], m.Version)
-	}
-	if m.SourceContext != nil {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(m.SourceContext.ProtoSize()))
-		n1, err := m.SourceContext.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n1
+	if m.Syntax != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Syntax))
+		i--
+		dAtA[i] = 0x38
 	}
 	if len(m.Mixins) > 0 {
-		for _, msg := range m.Mixins {
+		for iNdEx := len(m.Mixins) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Mixins[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
 			dAtA[i] = 0x32
-			i++
-			i = encodeVarintApi(dAtA, i, uint64(msg.ProtoSize()))
-			n, err := msg.MarshalTo(dAtA[i:])
+		}
+	}
+	if m.SourceContext != nil {
+		{
+			size, err := m.SourceContext.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i -= size
+			i = encodeVarintApi(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Version) > 0 {
+		i -= len(m.Version)
+		copy(dAtA[i:], m.Version)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Version)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Options) > 0 {
+		for iNdEx := len(m.Options) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Options[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x1a
 		}
 	}
-	if m.Syntax != 0 {
-		dAtA[i] = 0x38
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(m.Syntax))
+	if len(m.Methods) > 0 {
+		for iNdEx := len(m.Methods) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Methods[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
 	}
-	return i, nil
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *Method) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -410,72 +429,82 @@ func (m *Method) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Method) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Method) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Name) > 0 {
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
-		i += copy(dAtA[i:], m.Name)
+	if m.Syntax != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Syntax))
+		i--
+		dAtA[i] = 0x38
 	}
-	if len(m.RequestTypeUrl) > 0 {
-		dAtA[i] = 0x12
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.RequestTypeUrl)))
-		i += copy(dAtA[i:], m.RequestTypeUrl)
-	}
-	if m.RequestStreaming {
-		dAtA[i] = 0x18
-		i++
-		if m.RequestStreaming {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
+	if len(m.Options) > 0 {
+		for iNdEx := len(m.Options) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Options[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x32
 		}
-		i++
-	}
-	if len(m.ResponseTypeUrl) > 0 {
-		dAtA[i] = 0x22
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.ResponseTypeUrl)))
-		i += copy(dAtA[i:], m.ResponseTypeUrl)
 	}
 	if m.ResponseStreaming {
-		dAtA[i] = 0x28
-		i++
+		i--
 		if m.ResponseStreaming {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
 		}
-		i++
+		i--
+		dAtA[i] = 0x28
 	}
-	if len(m.Options) > 0 {
-		for _, msg := range m.Options {
-			dAtA[i] = 0x32
-			i++
-			i = encodeVarintApi(dAtA, i, uint64(msg.ProtoSize()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
+	if len(m.ResponseTypeUrl) > 0 {
+		i -= len(m.ResponseTypeUrl)
+		copy(dAtA[i:], m.ResponseTypeUrl)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.ResponseTypeUrl)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.RequestStreaming {
+		i--
+		if m.RequestStreaming {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
 		}
+		i--
+		dAtA[i] = 0x18
 	}
-	if m.Syntax != 0 {
-		dAtA[i] = 0x38
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(m.Syntax))
+	if len(m.RequestTypeUrl) > 0 {
+		i -= len(m.RequestTypeUrl)
+		copy(dAtA[i:], m.RequestTypeUrl)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.RequestTypeUrl)))
+		i--
+		dAtA[i] = 0x12
 	}
-	return i, nil
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *Mixin) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -483,33 +512,42 @@ func (m *Mixin) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Mixin) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Mixin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Name) > 0 {
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
-		i += copy(dAtA[i:], m.Name)
-	}
 	if len(m.Root) > 0 {
-		dAtA[i] = 0x12
-		i++
+		i -= len(m.Root)
+		copy(dAtA[i:], m.Root)
 		i = encodeVarintApi(dAtA, i, uint64(len(m.Root)))
-		i += copy(dAtA[i:], m.Root)
+		i--
+		dAtA[i] = 0x12
 	}
-	return i, nil
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func encodeVarintApi(dAtA []byte, offset int, v uint64) int {
+	offset -= sovApi(v)
+	base := offset
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
 	dAtA[offset] = uint8(v)
-	return offset + 1
+	return base
 }
 func (m *Api) ProtoSize() (n int) {
 	if m == nil {
@@ -607,14 +645,7 @@ func (m *Mixin) ProtoSize() (n int) {
 }
 
 func sovApi(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
+	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozApi(x uint64) (n int) {
 	return sovApi(uint64((x << 1) ^ uint64((int64(x) >> 63))))
@@ -623,13 +654,28 @@ func (this *Api) String() string {
 	if this == nil {
 		return "nil"
 	}
+	repeatedStringForMethods := "[]*Method{"
+	for _, f := range this.Methods {
+		repeatedStringForMethods += strings.Replace(f.String(), "Method", "Method", 1) + ","
+	}
+	repeatedStringForMethods += "}"
+	repeatedStringForOptions := "[]*Option{"
+	for _, f := range this.Options {
+		repeatedStringForOptions += strings.Replace(fmt.Sprintf("%v", f), "Option", "ptype.Option", 1) + ","
+	}
+	repeatedStringForOptions += "}"
+	repeatedStringForMixins := "[]*Mixin{"
+	for _, f := range this.Mixins {
+		repeatedStringForMixins += strings.Replace(f.String(), "Mixin", "Mixin", 1) + ","
+	}
+	repeatedStringForMixins += "}"
 	s := strings.Join([]string{`&Api{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`Methods:` + strings.Replace(fmt.Sprintf("%v", this.Methods), "Method", "Method", 1) + `,`,
-		`Options:` + strings.Replace(fmt.Sprintf("%v", this.Options), "Option", "Option", 1) + `,`,
+		`Methods:` + repeatedStringForMethods + `,`,
+		`Options:` + repeatedStringForOptions + `,`,
 		`Version:` + fmt.Sprintf("%v", this.Version) + `,`,
-		`SourceContext:` + strings.Replace(fmt.Sprintf("%v", this.SourceContext), "SourceContext", "SourceContext", 1) + `,`,
-		`Mixins:` + strings.Replace(fmt.Sprintf("%v", this.Mixins), "Mixin", "Mixin", 1) + `,`,
+		`SourceContext:` + strings.Replace(fmt.Sprintf("%v", this.SourceContext), "SourceContext", "source_context.SourceContext", 1) + `,`,
+		`Mixins:` + repeatedStringForMixins + `,`,
 		`Syntax:` + fmt.Sprintf("%v", this.Syntax) + `,`,
 		`}`,
 	}, "")
@@ -639,13 +685,18 @@ func (this *Method) String() string {
 	if this == nil {
 		return "nil"
 	}
+	repeatedStringForOptions := "[]*Option{"
+	for _, f := range this.Options {
+		repeatedStringForOptions += strings.Replace(fmt.Sprintf("%v", f), "Option", "ptype.Option", 1) + ","
+	}
+	repeatedStringForOptions += "}"
 	s := strings.Join([]string{`&Method{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`RequestTypeUrl:` + fmt.Sprintf("%v", this.RequestTypeUrl) + `,`,
 		`RequestStreaming:` + fmt.Sprintf("%v", this.RequestStreaming) + `,`,
 		`ResponseTypeUrl:` + fmt.Sprintf("%v", this.ResponseTypeUrl) + `,`,
 		`ResponseStreaming:` + fmt.Sprintf("%v", this.ResponseStreaming) + `,`,
-		`Options:` + strings.Replace(fmt.Sprintf("%v", this.Options), "Option", "Option", 1) + `,`,
+		`Options:` + repeatedStringForOptions + `,`,
 		`Syntax:` + fmt.Sprintf("%v", this.Syntax) + `,`,
 		`}`,
 	}, "")
@@ -794,7 +845,7 @@ func (m *Api) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Options = append(m.Options, &Option{})
+			m.Options = append(m.Options, &ptype.Option{})
 			if err := m.Options[len(m.Options)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -861,7 +912,7 @@ func (m *Api) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.SourceContext == nil {
-				m.SourceContext = &SourceContext{}
+				m.SourceContext = &source_context.SourceContext{}
 			}
 			if err := m.SourceContext.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -915,7 +966,7 @@ func (m *Api) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Syntax |= Syntax(b&0x7F) << shift
+				m.Syntax |= ptype.Syntax(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1138,7 +1189,7 @@ func (m *Method) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Options = append(m.Options, &Option{})
+			m.Options = append(m.Options, &ptype.Option{})
 			if err := m.Options[len(m.Options)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1157,7 +1208,7 @@ func (m *Method) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Syntax |= Syntax(b&0x7F) << shift
+				m.Syntax |= ptype.Syntax(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

@@ -10,6 +10,7 @@ import (
 	golang_proto "github.com/golang/protobuf/proto"
 	io "io"
 	math "math"
+	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 )
@@ -24,7 +25,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.GoGoProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // Wrapper message for `double`.
 //
@@ -45,7 +46,7 @@ func (m *DoubleValue) XXX_Unmarshal(b []byte) error {
 }
 func (m *DoubleValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +87,7 @@ func (m *FloatValue) XXX_Unmarshal(b []byte) error {
 }
 func (m *FloatValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +128,7 @@ func (m *Int64Value) XXX_Unmarshal(b []byte) error {
 }
 func (m *Int64Value) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -168,7 +169,7 @@ func (m *UInt64Value) XXX_Unmarshal(b []byte) error {
 }
 func (m *UInt64Value) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -209,7 +210,7 @@ func (m *Int32Value) XXX_Unmarshal(b []byte) error {
 }
 func (m *Int32Value) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -250,7 +251,7 @@ func (m *UInt32Value) XXX_Unmarshal(b []byte) error {
 }
 func (m *UInt32Value) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -291,7 +292,7 @@ func (m *BoolValue) XXX_Unmarshal(b []byte) error {
 }
 func (m *BoolValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -332,7 +333,7 @@ func (m *StringValue) XXX_Unmarshal(b []byte) error {
 }
 func (m *StringValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -373,7 +374,7 @@ func (m *BytesValue) XXX_Unmarshal(b []byte) error {
 }
 func (m *BytesValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	b = b[:cap(b)]
-	n, err := m.MarshalTo(b)
+	n, err := m.MarshalToSizedBuffer(b)
 	if err != nil {
 		return nil, err
 	}
@@ -421,7 +422,7 @@ func init() {
 }
 
 var fileDescriptor_5377b62bda767935 = []byte{
-	// 288 bytes of a gzipped FileDescriptorProto
+	// 311 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4b, 0xcf, 0xcf, 0x4f,
 	0xcf, 0x49, 0xd5, 0x2f, 0x28, 0xca, 0x2f, 0xc9, 0x4f, 0x2a, 0x4d, 0xd3, 0x2f, 0x2f, 0x4a, 0x2c,
 	0x28, 0x48, 0x2d, 0x2a, 0xd6, 0x03, 0x8b, 0x08, 0xf1, 0x43, 0xe4, 0xf5, 0x60, 0xf2, 0x4a, 0xca,
@@ -431,21 +432,23 @@ var fileDescriptor_5377b62bda767935 = []byte{
 	0x2c, 0x6a, 0x98, 0x61, 0x6a, 0x94, 0xb9, 0xb8, 0x43, 0x71, 0x29, 0x62, 0x41, 0x35, 0xc8, 0xd8,
 	0x08, 0x8b, 0x1a, 0x56, 0x34, 0x83, 0xb0, 0x2a, 0xe2, 0x85, 0x29, 0x52, 0xe4, 0xe2, 0x74, 0xca,
 	0xcf, 0xcf, 0xc1, 0xa2, 0x84, 0x03, 0xc9, 0x9c, 0xe0, 0x92, 0xa2, 0xcc, 0xbc, 0x74, 0x2c, 0x8a,
-	0x38, 0x91, 0x1c, 0xe4, 0x54, 0x59, 0x92, 0x5a, 0x8c, 0x45, 0x0d, 0x0f, 0x54, 0x8d, 0x53, 0x3b,
-	0xe3, 0x89, 0x87, 0x72, 0x0c, 0x37, 0x1e, 0xca, 0x31, 0x34, 0x3c, 0x92, 0x63, 0x3c, 0xf1, 0x48,
-	0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x1b, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0x58, 0xf0,
-	0x58, 0x8e, 0xf1, 0xc0, 0x63, 0x39, 0xc6, 0x13, 0x8f, 0xe5, 0x18, 0x2f, 0x3c, 0x96, 0x63, 0xb8,
-	0xf1, 0x58, 0x8e, 0x81, 0x4b, 0x38, 0x39, 0x3f, 0x57, 0x0f, 0x2d, 0x3a, 0x9c, 0x78, 0xc3, 0xa1,
-	0xf1, 0x15, 0x00, 0x12, 0x09, 0x60, 0x8c, 0x62, 0x2d, 0xa9, 0x2c, 0x48, 0x2d, 0xfe, 0xc1, 0xc8,
-	0xb8, 0x88, 0x89, 0xd9, 0x3d, 0xc0, 0x69, 0x15, 0x93, 0x9c, 0x3b, 0x44, 0x4b, 0x00, 0x54, 0x8b,
-	0x5e, 0x78, 0x6a, 0x4e, 0x8e, 0x77, 0x5e, 0x7e, 0x79, 0x5e, 0x08, 0x48, 0x65, 0x12, 0x1b, 0xd8,
-	0x2c, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x8c, 0xd6, 0x88, 0x2d, 0x0a, 0x02, 0x00, 0x00,
+	0x38, 0x91, 0x1c, 0xe4, 0x54, 0x59, 0x92, 0x5a, 0x8c, 0x45, 0x0d, 0x0f, 0x54, 0x8d, 0xd3, 0x1a,
+	0xc6, 0x13, 0x0f, 0xe5, 0x18, 0x6e, 0x3c, 0x94, 0x63, 0x68, 0x78, 0x24, 0xc7, 0x78, 0xe2, 0x91,
+	0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x37, 0x1e, 0xc9, 0x31, 0x4e, 0x78, 0x2c, 0xc7, 0xb0, 0xe0,
+	0xb1, 0x1c, 0xe3, 0x81, 0xc7, 0x72, 0x8c, 0x27, 0x1e, 0xcb, 0x31, 0x5e, 0x78, 0x2c, 0xc7, 0x70,
+	0xe3, 0xb1, 0x1c, 0x03, 0x97, 0x70, 0x72, 0x7e, 0xae, 0x1e, 0x5a, 0x74, 0x38, 0xf1, 0x86, 0x43,
+	0xe3, 0x2b, 0x00, 0x24, 0x12, 0xc0, 0x18, 0xa5, 0x95, 0x9e, 0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97,
+	0x9c, 0x9f, 0xab, 0x9f, 0x9e, 0x9f, 0x93, 0x98, 0x97, 0x8e, 0x88, 0xdb, 0x82, 0x92, 0xca, 0x82,
+	0xd4, 0x62, 0x78, 0x14, 0xff, 0x60, 0x64, 0x5c, 0xc4, 0xc4, 0xec, 0x1e, 0xe0, 0xb4, 0x8a, 0x49,
+	0xce, 0x1d, 0x62, 0x6e, 0x00, 0x54, 0xa9, 0x5e, 0x78, 0x6a, 0x4e, 0x8e, 0x77, 0x5e, 0x7e, 0x79,
+	0x5e, 0x08, 0x48, 0x4b, 0x12, 0x1b, 0xd8, 0x0c, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xbe,
+	0x1c, 0x80, 0xae, 0x2f, 0x02, 0x00, 0x00,
 }
 
 func (m *DoubleValue) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -453,23 +456,28 @@ func (m *DoubleValue) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *DoubleValue) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DoubleValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0x9
-		i++
+		i -= 8
 		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Value))))
-		i += 8
+		i--
+		dAtA[i] = 0x9
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *FloatValue) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -477,23 +485,28 @@ func (m *FloatValue) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *FloatValue) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *FloatValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0xd
-		i++
+		i -= 4
 		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.Value))))
-		i += 4
+		i--
+		dAtA[i] = 0xd
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *Int64Value) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -501,22 +514,27 @@ func (m *Int64Value) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Int64Value) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Int64Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0x8
-		i++
 		i = encodeVarintWrappers(dAtA, i, uint64(m.Value))
+		i--
+		dAtA[i] = 0x8
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *UInt64Value) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -524,22 +542,27 @@ func (m *UInt64Value) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *UInt64Value) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *UInt64Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0x8
-		i++
 		i = encodeVarintWrappers(dAtA, i, uint64(m.Value))
+		i--
+		dAtA[i] = 0x8
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *Int32Value) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -547,22 +570,27 @@ func (m *Int32Value) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Int32Value) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Int32Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0x8
-		i++
 		i = encodeVarintWrappers(dAtA, i, uint64(m.Value))
+		i--
+		dAtA[i] = 0x8
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *UInt32Value) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -570,22 +598,27 @@ func (m *UInt32Value) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *UInt32Value) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *UInt32Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value != 0 {
-		dAtA[i] = 0x8
-		i++
 		i = encodeVarintWrappers(dAtA, i, uint64(m.Value))
+		i--
+		dAtA[i] = 0x8
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *BoolValue) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -593,27 +626,32 @@ func (m *BoolValue) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *BoolValue) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *BoolValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if m.Value {
-		dAtA[i] = 0x8
-		i++
+		i--
 		if m.Value {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
 		}
-		i++
+		i--
+		dAtA[i] = 0x8
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *StringValue) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -621,23 +659,29 @@ func (m *StringValue) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *StringValue) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *StringValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if len(m.Value) > 0 {
-		dAtA[i] = 0xa
-		i++
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
 		i = encodeVarintWrappers(dAtA, i, uint64(len(m.Value)))
-		i += copy(dAtA[i:], m.Value)
+		i--
+		dAtA[i] = 0xa
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *BytesValue) Marshal() (dAtA []byte, err error) {
 	size := m.ProtoSize()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -645,27 +689,35 @@ func (m *BytesValue) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *BytesValue) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.ProtoSize()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *BytesValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if len(m.Value) > 0 {
-		dAtA[i] = 0xa
-		i++
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
 		i = encodeVarintWrappers(dAtA, i, uint64(len(m.Value)))
-		i += copy(dAtA[i:], m.Value)
+		i--
+		dAtA[i] = 0xa
 	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func encodeVarintWrappers(dAtA []byte, offset int, v uint64) int {
+	offset -= sovWrappers(v)
+	base := offset
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
 	dAtA[offset] = uint8(v)
-	return offset + 1
+	return base
 }
 func (m *DoubleValue) ProtoSize() (n int) {
 	if m == nil {
@@ -778,14 +830,7 @@ func (m *BytesValue) ProtoSize() (n int) {
 }
 
 func sovWrappers(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
+	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozWrappers(x uint64) (n int) {
 	return sovWrappers(uint64((x << 1) ^ uint64((int64(x) >> 63))))
