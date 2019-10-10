@@ -16,3 +16,4 @@ Mgoogle/protobuf/timestamp.proto=github.com/lqs/gogoslim/types,\
 Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types:. \
 myproto.proto
 ```
+
