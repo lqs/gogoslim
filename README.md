@@ -5,7 +5,7 @@ A customized configuration of gogoprotobuf (https://github.com/gogo/protobuf) to
 ## Usage
 
 ```
-go get -u github.com/lqs/gogoslim/protoc-gen-gogoslim
+go get github.com/gogo/protobuf@v1.2.1 github.com/lqs/gogoslim/protoc-gen-gogoslim
 
 protoc -I. --gogoslim_out=\
 Mgoogle/protobuf/any.proto=github.com/lqs/gogoslim/types,\
