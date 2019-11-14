@@ -1,4 +1,4 @@
-module github.com/lqs/gogoslim/protoc-gen-gogoslim
+module github.com/leverz/gogoslim/protoc-gen-gogoslim
 
 go 1.11
 
