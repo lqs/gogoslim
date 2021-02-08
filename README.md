@@ -1,3 +1,5 @@
+⚠️⚠️⚠️ This project is deprecated and should not be used ⚠️⚠️⚠️
+
 # gogoslim
 
 A customized configuration of gogoprotobuf (https://github.com/gogo/protobuf) to generate fast & slim code (without `XXX_shit` fields and `GetShit()` methods)
